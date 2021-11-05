@@ -18,6 +18,9 @@ defmodule MySocket.Worker do
     {:ok, %{listen_socket: listen_socket, handler_pid: handler_pid, acceptor_pid: acceptor_pid}}
   end
 
+  @doc """
+  Use `{:ok, socket_conn} = :gen_tcp.connect('127.0.0.1', 9001, [:binary, {:packet, 0}])`
+  """
   def accept_conn(server, listen_socket, handler_pid) do
     case :gen_tcp.accept(listen_socket) do
       {:ok, socket_conn} ->
